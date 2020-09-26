@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace填写dao接口的全限定名称-->
+<mapper namespace="com.lty.dao.BookDao">
+
+
+    <!--插入操作-->
+    <insert id="addBook"  parameterType="Books">
+       insert into ssmbuild.books(bookName,bookCounts,detail)
+      values (#{bookName}, #{bookCounts}, #{detail})
+    </insert>
+    <!--删除一本书-->
+    <delete id="deleteBookById">
+        delete from books where bookID =  #{bookId}
+    </delete>
+    <!--更新一本书-->
+    <update id="updateBookById">
+        update books set bookName=#{bookName},bookCounts=#{bookCounts},detail=#{detail} where  bookID = #{bookID}
+    </update>
+    <!--根据id查询书-->
+    <select id="queryBook" resultType="com.lty.domain.Books">
+        select bookid,bookname,bookCounts,detail from books where bookID = #{bookId}
+    </select>
+    <!--查询全部书籍-->
+    <select id="queryAllBooks" resultType="com.lty.domain.Books">
+        select bookid,bookname,bookCounts,detail from books
+    </select>
+
+    <!--通过名称查询书籍名称-->
+    <select id="queryBookByName" resultType="Books">
+        select bookid,bookname,bookCounts,detail from books where bookName = #{bookName}
+    </select>
+
+</mapper>
